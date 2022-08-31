@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-let screen = UIScreen.main.bounds
-
 struct GameView: View {
     
     @EnvironmentObject var logic: ViewModel
@@ -31,13 +29,9 @@ struct GameView: View {
     
     var body: some View {
         
-        
-        
         ZStack {
             
             VStack(spacing: 0.0) {
-                
-//                TopButtons()
                 
                 if !logic.isAnswered {
                     
@@ -49,26 +43,19 @@ struct GameView: View {
                     scores
                 }
                 
-                
                 questionAndAnswers
                     .disabled(logic.isAnswered)
 
-                
                 scoresOrNextButton
                 
                 Spacer()
             }
             
         }
-//        .animation(.spring(), value: logic.isAnswered)
         .onAppear {
-//            logic.generateQuestion()
-//            logic.generateAnswers()
             logic.resetTimer()
         }
-            
-        
-        
+           
     }
     
     var titleAndTimer: some View {
@@ -101,7 +88,7 @@ struct GameView: View {
     
     var scores: some View {
         VStack {
-            Text("Top Score: \(logic.topScore)")
+            Text("Top Score: \(logic.currecntTopScore)")
                 .font(.subheadline)
                 .bold()
                 .foregroundColor(Color("text"))

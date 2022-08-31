@@ -10,7 +10,7 @@ import SwiftUI
 struct StartView: View {
     
     @EnvironmentObject var logic: ViewModel
-    @AppStorage("highScore") var highScore = 0
+//    @AppStorage("highScore") var highScore = 0
     
     @State var progressValue: Float = 0.0
     
@@ -22,8 +22,6 @@ struct StartView: View {
         ZStack {
     
             VStack {
-                
-//                TopButtons()
                 
                 Text("Math Game")
                     .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: 2)
@@ -62,7 +60,7 @@ struct StartView: View {
                     TextButton(text: "Start")
                 }
                 
-                Text("Top Score: \(highScore)")
+                Text("Top Score: \(logic.currecntTopScore)")
                     .font(.subheadline)
                     .bold()
                     .foregroundColor(Color("text"))

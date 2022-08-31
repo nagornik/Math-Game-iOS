@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+let screen = UIScreen.main.bounds
+
 enum ShowedScreen {
     case start
     case game
@@ -35,10 +37,9 @@ class ViewModel: ObservableObject {
     @Published var secondNumber = 0
     @Published var difficulty: Difficulties = .medium {
         didSet {
+            allTopScores[oldValue.rawValue] = score
             score = 0
-        }
-        willSet {
-            allTopScores[difficulty.rawValue] = score
+            isAnswered = false
         }
     }
     
@@ -57,11 +58,24 @@ class ViewModel: ObservableObject {
         }
     }
     
+    @AppStorage("highScore") var topScore = Data()
     @Published var score = 0
+
+    var allTopScores: [String : Int] = [:] {
+        didSet {
+            guard let decodedScores = try? JSONEncoder().encode(allTopScores) else { return }
+            topScore = decodedScores
+        }
+    }
     
-    @AppStorage("highScore") var topScore = 0
-//    @AppStorage("highScores") var topScores = [String : Int]()
-    var allTopScores: [String : Int] = [:]
+    var currecntTopScore: Int {
+        for (key, value) in allTopScores {
+            if difficulty.rawValue == key {
+                return value
+            }
+        }
+        return 0
+    }
     
     @Published var isAnswered = false
     @Published var isSelected = Int()
@@ -69,6 +83,12 @@ class ViewModel: ObservableObject {
     
     var everySecTimer = Timer.publish(every: 1, tolerance: 1, on: .main, in: .common).autoconnect()
    
+    init() {
+        do {
+            allTopScores = try JSONDecoder().decode([String : Int].self, from: topScore)
+        } catch {}
+    }
+    
     func generateQuestion() {
         firstNumber = Int.random(in: 0...(difficultyNumber/2))
         secondNumber = Int.random(in: 0...(difficultyNumber/2))
@@ -115,8 +135,8 @@ class ViewModel: ObservableObject {
             score -= 1
         }
         
-        if score > topScore {
-            topScore = score
+        if score > allTopScores[difficulty.rawValue] ?? 0 {
+            allTopScores[difficulty.rawValue] = score
         }
  
     }

@@ -38,7 +38,7 @@ struct MainView: View {
                 }
                 
             }
-            
+           
         }
         
         .animation(.spring().speed(0.5), value: logic.selectedScreen)
