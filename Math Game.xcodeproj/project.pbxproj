@@ -20,6 +20,11 @@
 		4B68709828BE1828008D0355 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B68709728BE1828008D0355 /* PhotoPicker.swift */; };
 		4B68709A28BE4FD8008D0355 /* TopMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B68709928BE4FD8008D0355 /* TopMenuButton.swift */; };
 		4B68709C28BE8CA8008D0355 /* TopButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B68709B28BE8CA8008D0355 /* TopButtons.swift */; };
+		4B68709E28BF530C008D0355 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B68709D28BF530C008D0355 /* GoogleService-Info.plist */; };
+		4B6870A128BF9ED5008D0355 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4B6870A028BF9ED5008D0355 /* FirebaseAuth */; };
+		4B6870A328BF9ED5008D0355 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4B6870A228BF9ED5008D0355 /* FirebaseFirestore */; };
+		4B6870A528BF9ED5008D0355 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4B6870A428BF9ED5008D0355 /* FirebaseFirestoreSwift */; };
+		4B6870A728BF9ED5008D0355 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4B6870A628BF9ED5008D0355 /* FirebaseStorage */; };
 		4BC9C6612846AEEA0097D119 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9C6602846AEEA0097D119 /* StartView.swift */; };
 		4BC9C6632846B0EE0097D119 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9C6622846B0EE0097D119 /* TimerView.swift */; };
 /* End PBXBuildFile section */
@@ -39,6 +44,7 @@
 		4B68709728BE1828008D0355 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		4B68709928BE4FD8008D0355 /* TopMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuButton.swift; sourceTree = "<group>"; };
 		4B68709B28BE8CA8008D0355 /* TopButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopButtons.swift; sourceTree = "<group>"; };
+		4B68709D28BF530C008D0355 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4BC9C6602846AEEA0097D119 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		4BC9C6622846B0EE0097D119 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -48,6 +54,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B6870A128BF9ED5008D0355 /* FirebaseAuth in Frameworks */,
+				4B6870A728BF9ED5008D0355 /* FirebaseStorage in Frameworks */,
+				4B6870A328BF9ED5008D0355 /* FirebaseFirestore in Frameworks */,
+				4B6870A528BF9ED5008D0355 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +89,7 @@
 				4B68709328BCEEAE008D0355 /* Components */,
 				4B61F57228108A84005F1C5D /* ContentView.swift */,
 				4B61F57428108A87005F1C5D /* Assets.xcassets */,
+				4B68709D28BF530C008D0355 /* GoogleService-Info.plist */,
 				4B61F57628108A87005F1C5D /* Preview Content */,
 			);
 			path = "Math Game";
@@ -140,6 +151,12 @@
 			dependencies = (
 			);
 			name = "Math Game";
+			packageProductDependencies = (
+				4B6870A028BF9ED5008D0355 /* FirebaseAuth */,
+				4B6870A228BF9ED5008D0355 /* FirebaseFirestore */,
+				4B6870A428BF9ED5008D0355 /* FirebaseFirestoreSwift */,
+				4B6870A628BF9ED5008D0355 /* FirebaseStorage */,
+			);
 			productName = "Math Game";
 			productReference = 4B61F56D28108A84005F1C5D /* Math Game.app */;
 			productType = "com.apple.product-type.application";
@@ -168,6 +185,9 @@
 				Base,
 			);
 			mainGroup = 4B61F56428108A84005F1C5D;
+			packageReferences = (
+				4B68709F28BF9ED5008D0355 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 4B61F56E28108A84005F1C5D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -184,6 +204,7 @@
 			files = (
 				4B61F57828108A87005F1C5D /* Preview Assets.xcassets in Resources */,
 				4B61F57528108A87005F1C5D /* Assets.xcassets in Resources */,
+				4B68709E28BF530C008D0355 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +434,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4B68709F28BF9ED5008D0355 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4B6870A028BF9ED5008D0355 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B68709F28BF9ED5008D0355 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		4B6870A228BF9ED5008D0355 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B68709F28BF9ED5008D0355 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		4B6870A428BF9ED5008D0355 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B68709F28BF9ED5008D0355 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		4B6870A628BF9ED5008D0355 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B68709F28BF9ED5008D0355 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4B61F56528108A84005F1C5D /* Project object */;
 }
