@@ -9,8 +9,6 @@ import SwiftUI
 
 struct TopMenuButton: View {
     
-//    @EnvironmentObject var logic: ViewModel
-    
     var systemName: String
     var action: () -> Void
     
@@ -23,7 +21,6 @@ struct TopMenuButton: View {
             Image(systemName: systemName)
                 .font(.title)
                 .foregroundColor(Color("text"))
-                .padding()
         }
         
         

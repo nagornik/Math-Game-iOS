@@ -22,35 +22,18 @@ struct SettingsView: View {
         
         ZStack {
             
-            VStack {
+            VStack(alignment: .leading) {
                 
-//                TopButtons()
-
-                VStack(alignment: .leading) {
-                    
-                    profilePicture
-                    
-                    yourName
-                    
-                    difficulty
-                        
-                    
-                    Button {
-                        
-                    } label: {
-                        
-                    }
-
-                    
-                    
-                }
-                .padding(.horizontal)
+                profilePicture
                 
+                yourName
+                
+                difficulty
                 
                 Spacer()
                 
             }
-            
+            .padding(.horizontal)
             
         }
         .animation(.spring(), value: selectDifficulty)

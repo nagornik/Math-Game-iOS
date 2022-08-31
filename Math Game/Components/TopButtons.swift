@@ -13,7 +13,7 @@ struct TopButtons: View {
     
     var body: some View {
         
-        HStack(spacing: 16.0) {
+        HStack(spacing: 16) {
         
             if logic.selectedScreen == .settings {
                 
@@ -21,7 +21,6 @@ struct TopButtons: View {
                     .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: 2)
                     .font(.system(size: 35, weight: .bold))
                     .foregroundColor(Color("text"))
-                    .padding(.leading)
                     .transition(.move(edge: .leading).combined(with: .opacity))
                 
             } else if logic.selectedScreen == .game && logic.isAnswered {
@@ -57,8 +56,7 @@ struct TopButtons: View {
             }
                 
         }
-//        .padding()
-//        .transition(.move(edge: .trailing))
+        .padding()
         .frame(maxWidth: .infinity, alignment: .topTrailing)
         
     }
