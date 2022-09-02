@@ -13,6 +13,8 @@ let screen = UIScreen.main.bounds
 enum ShowedScreen {
     case start
     case game
+    case topResults
+    case login
     case settings
 }
 
@@ -40,6 +42,8 @@ class ViewModel: ObservableObject {
             allTopScores[oldValue.rawValue] = score
             score = 0
             isAnswered = false
+            generateQuestion()
+            generateAnswers()
         }
     }
     

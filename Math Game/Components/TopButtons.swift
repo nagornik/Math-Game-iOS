@@ -10,6 +10,7 @@ import SwiftUI
 struct TopButtons: View {
     
     @EnvironmentObject var logic: ViewModel
+    @EnvironmentObject var database: DatabaseService
     
     var body: some View {
         
@@ -37,7 +38,7 @@ struct TopButtons: View {
             if logic.selectedScreen != .game || logic.isAnswered {
                 
                 TopMenuButton(systemName: "chart.bar.xaxis", action: {
-                    
+                    logic.selectedScreen = database.isLoggedIn() ? .topResults : .login
                 })
                 .transition(.move(edge: .trailing).combined(with: .opacity))
                 
@@ -66,5 +67,6 @@ struct TopButtons_Previews: PreviewProvider {
     static var previews: some View {
         TopButtons()
             .environmentObject(ViewModel())
+            .environmentObject(DatabaseService())
     }
 }

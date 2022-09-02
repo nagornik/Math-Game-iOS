@@ -35,9 +35,16 @@ struct MainView: View {
                     case .settings:
                         SettingsView()
                             .transition(.move(edge: .bottom).combined(with: .opacity))
+                    case .topResults:
+                        TopResultsView()
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                    case .login:
+                        LoginView()
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
                 
             }
+            
            
         }
         

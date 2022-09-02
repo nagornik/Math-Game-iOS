@@ -19,6 +19,7 @@ struct Math_GameApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(ViewModel())
+                .environmentObject(DatabaseService())
         }
     }
 }

@@ -10,13 +10,12 @@ import SwiftUI
 struct SettingsView: View {
     
     @EnvironmentObject var logic: ViewModel
+    @EnvironmentObject var database: DatabaseService
     
     @State private var showPhotoSheet = false
     @State private var image: UIImage? = nil
     
-    
     @State var selectDifficulty = false
-    @State var name = "Anton"
     
     var body: some View {
         
@@ -30,13 +29,18 @@ struct SettingsView: View {
                 
                 difficulty
                 
+                signInOutButton
+                
                 Spacer()
                 
             }
-            .padding(.horizontal)
+//            .padding(.horizontal)
             
         }
         .animation(.spring(), value: selectDifficulty)
+        .onChange(of: selectDifficulty) { _ in
+            database.uploadUserData(allTopScores: logic.allTopScores)
+        }
         
         
     }
@@ -108,23 +112,24 @@ struct SettingsView: View {
                 .font(.system(size: 25, weight: .bold))
                 .foregroundColor(Color("text"))
                 .transition(.move(edge: .leading))
-                .padding()
+//                .padding()
             
             HStack {
                 
-                TextField("Name", text: $name)
+                TextField("Name", text: $database.name)
                 
                 Image(systemName: "xmark.circle.fill")
                     .onTapGesture {
-                        name = ""
+                        database.name = ""
                     }
             }
             .foregroundColor(Color("text"))
             .padding()
             .background(Color(.gray).opacity(0.3))
             .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-            
+
         }
+        .padding([.horizontal, .top])
         
     }
     
@@ -158,7 +163,7 @@ struct SettingsView: View {
                     .font(.system(size: 25, weight: .bold))
                     .foregroundColor(Color("text"))
                     .transition(.move(edge: .leading).combined(with: .opacity))
-                    .padding()
+//                    .padding()
                 
                 TextButton(text: logic.difficulty.rawValue, size: 14)
                     .padding(.horizontal)
@@ -170,6 +175,33 @@ struct SettingsView: View {
             }
             
         }
+//        .padding([.horizontal, .top])
+        .padding()
+        
+    }
+    
+    @ViewBuilder
+    var signInOutButton: some View {
+        
+        if database.userIsLoggedIn {
+            Button {
+                database.logOut()
+            } label: {
+                TextButton(text: "Sign out", size: 18)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+            }
+            .transition(.move(edge: .leading).combined(with: .opacity))
+        } else {
+            Button {
+                logic.selectedScreen = .login
+            } label: {
+                TextButton(text: "Log in", size: 18)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+            }
+            .transition(.move(edge: .leading).combined(with: .opacity))
+        }
         
     }
     
@@ -179,5 +211,6 @@ struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
             .environmentObject(ViewModel())
+            .environmentObject(DatabaseService())
     }
 }

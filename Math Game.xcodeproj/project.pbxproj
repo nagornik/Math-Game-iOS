@@ -25,6 +25,9 @@
 		4B6870A328BF9ED5008D0355 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4B6870A228BF9ED5008D0355 /* FirebaseFirestore */; };
 		4B6870A528BF9ED5008D0355 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4B6870A428BF9ED5008D0355 /* FirebaseFirestoreSwift */; };
 		4B6870A728BF9ED5008D0355 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4B6870A628BF9ED5008D0355 /* FirebaseStorage */; };
+		4B6870A928BFC578008D0355 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6870A828BFC578008D0355 /* LoginView.swift */; };
+		4B6870AB28BFC589008D0355 /* TopResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6870AA28BFC589008D0355 /* TopResultsView.swift */; };
+		4B6870AD28BFC752008D0355 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6870AC28BFC752008D0355 /* DatabaseService.swift */; };
 		4BC9C6612846AEEA0097D119 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9C6602846AEEA0097D119 /* StartView.swift */; };
 		4BC9C6632846B0EE0097D119 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9C6622846B0EE0097D119 /* TimerView.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +48,9 @@
 		4B68709928BE4FD8008D0355 /* TopMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuButton.swift; sourceTree = "<group>"; };
 		4B68709B28BE8CA8008D0355 /* TopButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopButtons.swift; sourceTree = "<group>"; };
 		4B68709D28BF530C008D0355 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4B6870A828BFC578008D0355 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		4B6870AA28BFC589008D0355 /* TopResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopResultsView.swift; sourceTree = "<group>"; };
+		4B6870AC28BFC752008D0355 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		4BC9C6602846AEEA0097D119 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		4BC9C6622846B0EE0097D119 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,6 +116,8 @@
 				4BC9C6602846AEEA0097D119 /* StartView.swift */,
 				4B68708A28BA1C79008D0355 /* GameView.swift */,
 				4B68709528BE1481008D0355 /* SettingsView.swift */,
+				4B6870A828BFC578008D0355 /* LoginView.swift */,
+				4B6870AA28BFC589008D0355 /* TopResultsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -130,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				4B68708C28BA36F0008D0355 /* ViewModel.swift */,
+				4B6870AC28BFC752008D0355 /* DatabaseService.swift */,
 				4B68709728BE1828008D0355 /* PhotoPicker.swift */,
 			);
 			path = ViewModels;
@@ -221,11 +230,14 @@
 				4B68709A28BE4FD8008D0355 /* TopMenuButton.swift in Sources */,
 				4B68709128BCB2ED008D0355 /* MainView.swift in Sources */,
 				4B61F57328108A84005F1C5D /* ContentView.swift in Sources */,
+				4B6870AD28BFC752008D0355 /* DatabaseService.swift in Sources */,
 				4BC9C6612846AEEA0097D119 /* StartView.swift in Sources */,
 				4B61F57128108A84005F1C5D /* Math_GameApp.swift in Sources */,
+				4B6870A928BFC578008D0355 /* LoginView.swift in Sources */,
 				4B68709628BE1481008D0355 /* SettingsView.swift in Sources */,
 				4B68708F28BA9574008D0355 /* TextButton.swift in Sources */,
 				4B68708B28BA1C79008D0355 /* GameView.swift in Sources */,
+				4B6870AB28BFC589008D0355 /* TopResultsView.swift in Sources */,
 				4B61F57F28108B60005F1C5D /* AnswerButton.swift in Sources */,
 				4B68708D28BA36F0008D0355 /* ViewModel.swift in Sources */,
 			);
