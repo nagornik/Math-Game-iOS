@@ -88,16 +88,10 @@ class ViewModel: ObservableObject {
     
     
     var everySecTimer = Timer.publish(every: 1, tolerance: 1, on: .main, in: .common).autoconnect()
-   
-    init() {
-        do {
-            allTopScores = try JSONDecoder().decode([String : Int].self, from: topScore)
-        } catch {}
-    }
     
     func generateQuestion() {
-        firstNumber = Int.random(in: 0...(difficultyNumber/2))
-        secondNumber = Int.random(in: 0...(difficultyNumber/2))
+        firstNumber = Int.random(in: (difficultyNumber/4)...(difficultyNumber/2))
+        secondNumber = Int.random(in: (difficultyNumber/4)...(difficultyNumber/2))
         correctAnswer = firstNumber + secondNumber
     }
     
@@ -106,7 +100,7 @@ class ViewModel: ObservableObject {
         func addFourItemsToArray() {
             choiceArray.removeAll()
             for _ in 0..<3 {
-                choiceArray.append(Int.random(in: 0...difficultyNumber))
+                choiceArray.append(Int.random(in: (difficultyNumber/2)...difficultyNumber))
             }
             choiceArray.append(correctAnswer)
             choiceArray.shuffle()
@@ -170,6 +164,10 @@ class ViewModel: ObservableObject {
         stopTimer()
         isAnswered = true
         isSelected = number
+    }
+    
+    func getAllTopScoresFromLocal() -> [String : Int]? {
+        return try? JSONDecoder().decode([String : Int].self, from: topScore)
     }
     
 }

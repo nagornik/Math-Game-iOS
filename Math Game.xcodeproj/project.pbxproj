@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4B61F57128108A84005F1C5D /* Math_GameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B61F57028108A84005F1C5D /* Math_GameApp.swift */; };
-		4B61F57328108A84005F1C5D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B61F57228108A84005F1C5D /* ContentView.swift */; };
 		4B61F57528108A87005F1C5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B61F57428108A87005F1C5D /* Assets.xcassets */; };
 		4B61F57828108A87005F1C5D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B61F57728108A87005F1C5D /* Preview Assets.xcassets */; };
 		4B61F57F28108B60005F1C5D /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B61F57E28108B60005F1C5D /* AnswerButton.swift */; };
@@ -40,7 +39,6 @@
 /* Begin PBXFileReference section */
 		4B61F56D28108A84005F1C5D /* Math Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Math Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B61F57028108A84005F1C5D /* Math_GameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math_GameApp.swift; sourceTree = "<group>"; };
-		4B61F57228108A84005F1C5D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B61F57428108A87005F1C5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B61F57728108A87005F1C5D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4B61F57E28108B60005F1C5D /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 				4B68709428BCEEC9008D0355 /* ViewModels */,
 				4B68709328BCEEAE008D0355 /* Components */,
 				4BF73C4628C2479B003D2FA0 /* Models */,
-				4B61F57228108A84005F1C5D /* ContentView.swift */,
 				4B61F57428108A87005F1C5D /* Assets.xcassets */,
 				4B68709D28BF530C008D0355 /* GoogleService-Info.plist */,
 				4B61F57628108A87005F1C5D /* Preview Content */,
@@ -253,7 +250,6 @@
 				4BF73C4C28C258A1003D2FA0 /* AsyncImageView.swift in Sources */,
 				4B68709A28BE4FD8008D0355 /* TopMenuButton.swift in Sources */,
 				4B68709128BCB2ED008D0355 /* MainView.swift in Sources */,
-				4B61F57328108A84005F1C5D /* ContentView.swift in Sources */,
 				4BF73C4E28C376F8003D2FA0 /* YourTop.swift in Sources */,
 				4B6870AD28BFC752008D0355 /* DatabaseService.swift in Sources */,
 				4BC9C6612846AEEA0097D119 /* StartView.swift in Sources */,

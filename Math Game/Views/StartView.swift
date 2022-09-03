@@ -10,7 +10,6 @@ import SwiftUI
 struct StartView: View {
     
     @EnvironmentObject var logic: ViewModel
-//    @AppStorage("highScore") var highScore = 0
     
     @State var progressValue: Float = 0.0
     
@@ -25,8 +24,8 @@ struct StartView: View {
                 
                 Text("Math Game")
                     .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: 2)
-                    .font(.system(size: 55, weight: .bold))
-                    .foregroundColor(Color(UIColor(hue:0.70, saturation:0.46, brightness:0.35, alpha:1.00)))
+                    .font(.system(size: 55, weight: .bold, design: .rounded))
+                    .foregroundColor(Color("text"))
                     .padding(.bottom, 50.0)
                 
                 VStack {
@@ -56,6 +55,7 @@ struct StartView: View {
                 
                 Button {
                     logic.selectedScreen = .game
+                    logic.resetTimer()
                 } label: {
                     TextButton(text: "Start")
                 }
@@ -102,5 +102,6 @@ struct StartView_Previews: PreviewProvider {
     static var previews: some View {
         StartView()
             .environmentObject(ViewModel())
+            .environmentObject(DatabaseService())
     }
 }

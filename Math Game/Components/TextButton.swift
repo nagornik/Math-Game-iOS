@@ -21,7 +21,7 @@ struct TextButton: View {
             .padding()
             .padding(.horizontal)
             .font(.system(size: size, weight: .bold))
-            .background(Color(logic.difficulty.rawValue == text ? "text" : "buttonBack"))
+            .background(Color(logic.difficulty.rawValue == text ? "selectedButton" : "buttonBack"))
             .foregroundColor(Color("buttonForeground"))
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
             .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 3)

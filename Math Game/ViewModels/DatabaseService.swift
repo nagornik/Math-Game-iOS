@@ -34,6 +34,7 @@ class DatabaseService: ObservableObject {
             }
         }
     }
+    @Published var isUploadingPic = false
     
     init() {
         if name == "" {
@@ -41,7 +42,7 @@ class DatabaseService: ObservableObject {
         }
         userIsLoggedIn = isLoggedIn()
         if isLoggedIn() {
-            downloadImage()
+            downloadProfilePicAndName()
         }
     }
     
@@ -74,7 +75,7 @@ class DatabaseService: ObservableObject {
                 completion(error)
             } else if result != nil {
                 self.userIsLoggedIn = true
-                self.downloadImage()
+                self.downloadProfilePicAndName()
                 completion(nil)
             }
         }
@@ -90,6 +91,27 @@ class DatabaseService: ObservableObject {
         }
     }
     
+    func downloadAndUpdateScore(allTopScores: [String : Int], completion: @escaping ([String : Int]?) -> Void) {
+        guard isLoggedIn() else { return }
+        var updatedTopScore = [String : Int]()
+        let userId = Auth.auth().currentUser!.uid
+        let ref = db.collection("users").document(userId)
+        ref.getDocument { snap, error in
+            guard error == nil && snap != nil else { return }
+            for diff in Difficulties.allCases {
+                let databaseScore = snap![diff.rawValue] as? Int ?? 0
+                if databaseScore > allTopScores[diff.rawValue] ?? 0 {
+                    updatedTopScore[diff.rawValue] = databaseScore
+                } else {
+                    updatedTopScore[diff.rawValue] = allTopScores[diff.rawValue] ?? 0
+                    let localScore = allTopScores[diff.rawValue] ?? 0
+                    ref.setData([diff.rawValue : localScore], merge: true)
+                }
+            }
+            completion(updatedTopScore)
+        }
+    }
+    
     func logOut() {
         try? Auth.auth().signOut()
         userIsLoggedIn = false
@@ -98,6 +120,7 @@ class DatabaseService: ObservableObject {
     func uploadImage(image: UIImage) {
         
         guard isLoggedIn() else { return }
+        isUploadingPic = true
         
         let userId = Auth.auth().currentUser!.uid
         let doc = db.collection("users").document(userId)
@@ -115,17 +138,23 @@ class DatabaseService: ObservableObject {
         fileRef.putData(imageData!, metadata: nil) { meta, error in
             
             if error != nil {
+                self.isUploadingPic = false
                 return
             }
             
             fileRef.downloadURL { url, error in
                 if error != nil {
+                    self.isUploadingPic = false
                     return
                 }
                 
-                guard url != nil else { return }
+                guard url != nil else {
+                    self.isUploadingPic = false
+                    return
+                }
                 
                 doc.setData(["photo" : url!.absoluteString], merge: true) { error in
+                    self.isUploadingPic = false
                     if error != nil {
                         return
                     }
@@ -137,54 +166,16 @@ class DatabaseService: ObservableObject {
         
     }
     
-//    func uploadImage(image: UIImage, completion: @escaping (Error?) -> Void) {
-//
-//        guard isLoggedIn() else { return }
-//
-//        let userId = Auth.auth().currentUser!.uid
-//        let doc = db.collection("users").document(userId)
-//
-//        let storageRef = Storage.storage().reference()
-//        let resizedImage = image.resizeWithWidth(width: 300)
-//        guard resizedImage != nil else { return }
-//        let imageData = resizedImage!.jpegData(compressionQuality: 0.8)
-//
-//        guard imageData != nil else { return }
-//
-//        let path = "images/\(userId).jpg"
-//        let fileRef = storageRef.child(path)
-//
-//        fileRef.putData(imageData!, metadata: nil) { meta, error in
-//
-//            if error != nil {
-//                completion(error)
-//            }
-//
-//            fileRef.downloadURL { url, error in
-//                if error != nil {
-//                    completion(error)
-//                }
-//
-//                guard url != nil else { return }
-//
-//                doc.setData(["photo" : url!.absoluteString], merge: true) { error in
-//                    if error != nil {
-//                        completion(error)
-//                    }
-//                }
-//
-//            }
-//
-//        }
-//
-//    }
-    
-    func downloadImage() {
+    func downloadProfilePicAndName() {
         guard isLoggedIn() else { return }
         let userId = Auth.auth().currentUser!.uid
         let doc = db.collection("users").document(userId)
         doc.getDocument { snap, error in
             guard error == nil && snap != nil else { return }
+            
+            if snap!["name"] as? String != nil {
+                self.name = snap!["name"] as! String
+            }
             
             guard (snap!["photo"] as? String) != nil else { return }
             
@@ -210,23 +201,20 @@ class DatabaseService: ObservableObject {
                 let user = OtherUser(
                     id: doc.documentID,
                     name: doc["name"] as? String ?? "Player \(Int.random(in: 100...10000))",
-                    veryEasy: doc["Very easy"] as? Int,
-                    easy: doc["Easy"] as? Int,
-                    medium: doc["Medium"] as? Int,
-                    hard: doc["Hard"] as? Int,
-                    ultraHard: doc["Ultra hard"] as? Int,
-                    topScores: ["Very easy" : doc["Very Easy"] as? Int, "Easy" : doc["Easy"] as? Int, "Medium" : doc["Medium"] as? Int, "Hard" : doc["Hard"] as? Int, "Ultra hard" : doc["Ultra hard"] as? Int],
+                    topScores: [
+                        "Very easy" : doc["Very easy"] as? Int,
+                        "Easy" : doc["Easy"] as? Int,
+                        "Medium" : doc["Medium"] as? Int,
+                        "Hard" : doc["Hard"] as? Int,
+                        "Ultra hard" : doc["Ultra hard"] as? Int
+                    ],
                     photo: doc["photo"] as? String
                 )
                 users.append(user)
             }
             completion(users)
         })
-        
     }
-    
-    
-    
     
 }
 

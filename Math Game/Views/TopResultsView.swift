@@ -34,10 +34,6 @@ struct TopResultsView: View {
                 
                 YourTop(profilePic: database.profilePic, username: database.name, topScore: logic.allTopScores[logic.difficultyForTopScore.rawValue] ?? 0)
                 
-                if users.count == 0 {
-                    Text("no users")
-                }
-                
                 ScrollView(showsIndicators: false) {
                     ForEach(users.sorted(by: {
                         $0.topScores[logic.difficultyForTopScore.rawValue]! ?? 0 > $1.topScores[logic.difficultyForTopScore.rawValue]! ?? 0
@@ -46,7 +42,11 @@ struct TopResultsView: View {
                             UserRow(user: user)
                         }
                     }
-                    
+                }
+                .refreshable {
+                    database.getAllUsers { users in
+                        self.users = users
+                    }
                 }
                 
             }

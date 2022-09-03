@@ -22,8 +22,9 @@ struct DifficultyButtonTopScore: View {
         } label: {
             Text(text)
                 .bold()
+                .font(.caption)
                 .padding()
-                .background(Color(logic.difficultyForTopScore.rawValue == text ? "text" : "buttonBack"))
+                .background(Color(logic.difficultyForTopScore.rawValue == text ? "selectedButton" : "buttonBack"))
                 .foregroundColor(Color("buttonForeground"))
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 3)

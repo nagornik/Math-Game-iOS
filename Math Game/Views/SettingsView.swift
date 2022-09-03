@@ -13,16 +13,6 @@ struct SettingsView: View {
     @EnvironmentObject var database: DatabaseService
     
     @State private var showPhotoSheet = false
-//    @State private var image: UIImage? = nil {
-//        willSet {
-//            if newValue != nil {
-//                database.uploadImage(image: newValue!) { error in
-//
-//                }
-//            }
-//        }
-//    }
-    
     @State var selectDifficulty = false
     
     var body: some View {
@@ -42,14 +32,15 @@ struct SettingsView: View {
                 Spacer()
                 
             }
-//            .padding(.horizontal)
             
         }
         .animation(.spring(), value: selectDifficulty)
         .onChange(of: selectDifficulty) { _ in
             database.uploadUserData(allTopScores: logic.allTopScores)
         }
-        
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
         
     }
     
@@ -72,14 +63,16 @@ struct SettingsView: View {
                             .background(.ultraThinMaterial)
                             .frame(maxHeight: .infinity, alignment: .bottom)
                     }
+            } else if database.isUploadingPic {
+                ProgressView()
+                    .foregroundColor(Color("text"))
+                    .frame(width: 50, height: 50)
             } else {
-                ZStack {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(Color("text"))
-                        .frame(width: 50, height: 50)
-                }
+                Image(systemName: "photo")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(Color("text"))
+                    .frame(width: 50, height: 50)
             }
             
         }
@@ -110,9 +103,6 @@ struct SettingsView: View {
             }
             .edgesIgnoringSafeArea(.all)
         }
-//        .onAppear {
-//            database.downloadImage()
-//        }
         
     }
     
@@ -125,11 +115,13 @@ struct SettingsView: View {
                 .font(.system(size: 25, weight: .bold))
                 .foregroundColor(Color("text"))
                 .transition(.move(edge: .leading))
-//                .padding()
             
             HStack {
                 
                 TextField("Name", text: $database.name)
+                    .onSubmit {
+                        database.uploadUserData(allTopScores: logic.allTopScores)
+                    }
                 
                 Image(systemName: "xmark.circle.fill")
                     .onTapGesture {
@@ -188,7 +180,6 @@ struct SettingsView: View {
             }
             
         }
-//        .padding([.horizontal, .top])
         .padding()
         
     }
@@ -199,6 +190,7 @@ struct SettingsView: View {
         if database.userIsLoggedIn {
             Button {
                 database.logOut()
+                logic.allTopScores.removeAll()
                 logic.selectedScreen = .start
             } label: {
                 TextButton(text: "Sign out", size: 18)

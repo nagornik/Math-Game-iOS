@@ -39,7 +39,7 @@ struct TimerView: View {
             Text("\(max("0", timeRemaning.formatted())) sec")
                         .font(.system(size: 35, weight: .semibold))
                         .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: 2)
-                        .foregroundColor(Color(UIColor(hue:0.70, saturation:0.46, brightness:0.35, alpha:1.00)))
+                        .foregroundColor(Color("text"))
 //                        .animation(.linear(duration: 5), value: progress)
 //                        .onTapGesture {
 //                                progress += 0.1

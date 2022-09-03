@@ -54,6 +54,8 @@ struct GameView: View {
             
         }
         .onAppear {
+            logic.generateQuestion()
+            logic.generateAnswers()
             logic.resetTimer()
         }
            
@@ -79,7 +81,7 @@ struct GameView: View {
                     
                     if logic.timeRemaning < 0 {
                         logic.isAnswered = true
-                        logic.score -= 1
+                        logic.checkIfAnswerIsCorrect(answer: Int())
                     }
                 }
                 

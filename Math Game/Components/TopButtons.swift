@@ -59,6 +59,9 @@ struct TopButtons: View {
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .topTrailing)
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
         
     }
 }

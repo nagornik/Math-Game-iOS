@@ -10,6 +10,7 @@ import SwiftUI
 struct MainView: View {
     
     @EnvironmentObject var logic: ViewModel
+    @EnvironmentObject var database: DatabaseService
     
     var body: some View {
         
@@ -54,17 +55,20 @@ struct MainView: View {
                 .transition(.opacity)
                 .ignoresSafeArea()
             }
-            
+
         }
-        
         .animation(.spring().speed(0.5), value: logic.selectedScreen)
         .animation(.spring().speed(0.5), value: logic.isAnswered)
         .animation(.spring().speed(0.5), value: logic.isLoading)
         .onAppear {
-            logic.generateQuestion()
-            logic.generateAnswers()
+            database.downloadAndUpdateScore(allTopScores: logic.allTopScores) { data in
+                if data != nil {
+                    logic.allTopScores = data!
+                } else {
+                    logic.allTopScores = logic.getAllTopScoresFromLocal() ?? [String : Int]()
+                }
+            }
         }
-        
         
     }
 }
@@ -73,5 +77,7 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
             .environmentObject(ViewModel())
+            .environmentObject(DatabaseService())
+            .preferredColorScheme(.dark)
     }
 }

@@ -150,6 +150,8 @@ struct LoginView: View {
         guard email != "" && password != "" else { return }
         
         logic.isLoading = true
+            
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         
         if mode == .register {
             database.register(email: email, password: password) { error in
@@ -174,6 +176,13 @@ struct LoginView: View {
                 database.userIsLoggedIn = true
                 logic.selectedScreen = .topResults
                 logic.isLoading = false
+                database.downloadAndUpdateScore(allTopScores: logic.allTopScores) { data in
+                    if data != nil {
+                        logic.allTopScores = data!
+                    } else {
+                        logic.allTopScores = logic.getAllTopScoresFromLocal() ?? [String : Int]()
+                    }
+                }
             }
         }
         
