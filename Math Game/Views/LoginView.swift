@@ -28,15 +28,13 @@ struct LoginView: View {
     @FocusState var focus: FocusedFields?
     @State var isFocused = false
     
-    @State var mode: LoginMode = .register
+    @State var mode: LoginMode = .signIn
     
     @State var name = ""
     @State var email = ""
     @State var password = ""
     @State var errorMessage: String?
     @State var showError = false
-    
-    @State var loading = false
     
     var body: some View {
         
@@ -121,9 +119,9 @@ struct LoginView: View {
                 .onTapGesture {
                     loginOrRegisterOrNextField()
                 }
-                .disabled(loading)
-                .opacity(loading ? 0.5 : 1)
-                .animation(.spring(), value: loading)
+                .disabled(logic.isLoading)
+                .opacity(logic.isLoading ? 0.5 : 1)
+                .animation(.spring(), value: logic.isLoading)
             
             
         }
@@ -151,7 +149,7 @@ struct LoginView: View {
         
         guard email != "" && password != "" else { return }
         
-        loading = true
+        logic.isLoading = true
         
         if mode == .register {
             database.register(email: email, password: password) { error in
@@ -175,14 +173,14 @@ struct LoginView: View {
             if database.userIsLoggedIn {
                 database.userIsLoggedIn = true
                 logic.selectedScreen = .topResults
-                loading = false
+                logic.isLoading = false
             }
         }
         
         func loginError(error: Error) {
             errorMessage = error.localizedDescription
             showError = true
-            loading = false
+            logic.isLoading = false
         }
         
     }

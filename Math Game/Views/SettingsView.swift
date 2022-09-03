@@ -13,7 +13,15 @@ struct SettingsView: View {
     @EnvironmentObject var database: DatabaseService
     
     @State private var showPhotoSheet = false
-    @State private var image: UIImage? = nil
+//    @State private var image: UIImage? = nil {
+//        willSet {
+//            if newValue != nil {
+//                database.uploadImage(image: newValue!) { error in
+//
+//                }
+//            }
+//        }
+//    }
     
     @State var selectDifficulty = false
     
@@ -49,10 +57,12 @@ struct SettingsView: View {
         
         ZStack {
             
-            if let image = image {
+            if let image = database.profilePic {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
+                    .frame(width: 130, height: 130)
+                    .clipShape(Circle())
                     .overlay {
                         Text("Edit")
                             .font(.caption)
@@ -93,13 +103,16 @@ struct SettingsView: View {
                     if let images = imagesOrNil {
                         if let first = images.first {
                             print(first)
-                            image = first
+                            database.profilePic = first
                         }
                     }
                 }
             }
             .edgesIgnoringSafeArea(.all)
         }
+//        .onAppear {
+//            database.downloadImage()
+//        }
         
     }
     
@@ -186,6 +199,7 @@ struct SettingsView: View {
         if database.userIsLoggedIn {
             Button {
                 database.logOut()
+                logic.selectedScreen = .start
             } label: {
                 TextButton(text: "Sign out", size: 18)
                     .padding()

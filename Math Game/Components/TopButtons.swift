@@ -24,7 +24,7 @@ struct TopButtons: View {
                     .foregroundColor(Color("text"))
                     .transition(.move(edge: .leading).combined(with: .opacity))
                 
-            } else if logic.selectedScreen == .game && logic.isAnswered {
+            } else if logic.selectedScreen == .game && logic.isAnswered || logic.selectedScreen != .settings && logic.selectedScreen != .game {
                 
                 TopMenuButton(systemName: "house.fill", action: {
                     logic.selectedScreen = .start

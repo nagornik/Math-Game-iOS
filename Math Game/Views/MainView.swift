@@ -45,11 +45,21 @@ struct MainView: View {
                 
             }
             
-           
+            if logic.isLoading {
+                ZStack {
+                    Color.black
+                        .opacity(0.3)
+                    ProgressView()
+                }
+                .transition(.opacity)
+                .ignoresSafeArea()
+            }
+            
         }
         
         .animation(.spring().speed(0.5), value: logic.selectedScreen)
         .animation(.spring().speed(0.5), value: logic.isAnswered)
+        .animation(.spring().speed(0.5), value: logic.isLoading)
         .onAppear {
             logic.generateQuestion()
             logic.generateAnswers()

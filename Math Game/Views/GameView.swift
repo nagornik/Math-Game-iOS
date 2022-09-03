@@ -10,6 +10,7 @@ import SwiftUI
 struct GameView: View {
     
     @EnvironmentObject var logic: ViewModel
+    @EnvironmentObject var database: DatabaseService
     
     var title: String {
         if logic.timeRemaning == 5 {
@@ -78,6 +79,7 @@ struct GameView: View {
                     
                     if logic.timeRemaning < 0 {
                         logic.isAnswered = true
+                        logic.score -= 1
                     }
                 }
                 
@@ -123,6 +125,10 @@ struct GameView: View {
             }
             .frame(width: screen.width/1.5)
         }
+        .onChange(of: logic.allTopScores) { newValue in
+            database.uploadUserData(allTopScores: newValue)
+        }
+        
     }
     
     var scoresOrNextButton: some View {
@@ -152,5 +158,6 @@ struct GameView_Previews: PreviewProvider {
     static var previews: some View {
         GameView()
             .environmentObject(ViewModel())
+            .environmentObject(DatabaseService())
     }
 }

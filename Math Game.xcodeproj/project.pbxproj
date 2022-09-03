@@ -30,6 +30,11 @@
 		4B6870AD28BFC752008D0355 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6870AC28BFC752008D0355 /* DatabaseService.swift */; };
 		4BC9C6612846AEEA0097D119 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9C6602846AEEA0097D119 /* StartView.swift */; };
 		4BC9C6632846B0EE0097D119 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9C6622846B0EE0097D119 /* TimerView.swift */; };
+		4BF73C4528C242BF003D2FA0 /* DifficultyButtonTopScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF73C4428C242BF003D2FA0 /* DifficultyButtonTopScore.swift */; };
+		4BF73C4828C247E4003D2FA0 /* OtherUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF73C4728C247E4003D2FA0 /* OtherUser.swift */; };
+		4BF73C4A28C25736003D2FA0 /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF73C4928C25736003D2FA0 /* UserRow.swift */; };
+		4BF73C4C28C258A1003D2FA0 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF73C4B28C258A1003D2FA0 /* AsyncImageView.swift */; };
+		4BF73C4E28C376F8003D2FA0 /* YourTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF73C4D28C376F8003D2FA0 /* YourTop.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +58,11 @@
 		4B6870AC28BFC752008D0355 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		4BC9C6602846AEEA0097D119 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		4BC9C6622846B0EE0097D119 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		4BF73C4428C242BF003D2FA0 /* DifficultyButtonTopScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButtonTopScore.swift; sourceTree = "<group>"; };
+		4BF73C4728C247E4003D2FA0 /* OtherUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUser.swift; sourceTree = "<group>"; };
+		4BF73C4928C25736003D2FA0 /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
+		4BF73C4B28C258A1003D2FA0 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		4BF73C4D28C376F8003D2FA0 /* YourTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourTop.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +103,7 @@
 				4B68709228BCEEAA008D0355 /* Views */,
 				4B68709428BCEEC9008D0355 /* ViewModels */,
 				4B68709328BCEEAE008D0355 /* Components */,
+				4BF73C4628C2479B003D2FA0 /* Models */,
 				4B61F57228108A84005F1C5D /* ContentView.swift */,
 				4B61F57428108A87005F1C5D /* Assets.xcassets */,
 				4B68709D28BF530C008D0355 /* GoogleService-Info.plist */,
@@ -130,6 +141,10 @@
 				4B68708E28BA9574008D0355 /* TextButton.swift */,
 				4B68709B28BE8CA8008D0355 /* TopButtons.swift */,
 				4B68709928BE4FD8008D0355 /* TopMenuButton.swift */,
+				4BF73C4428C242BF003D2FA0 /* DifficultyButtonTopScore.swift */,
+				4BF73C4928C25736003D2FA0 /* UserRow.swift */,
+				4BF73C4D28C376F8003D2FA0 /* YourTop.swift */,
+				4BF73C4B28C258A1003D2FA0 /* AsyncImageView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -142,6 +157,14 @@
 				4B68709728BE1828008D0355 /* PhotoPicker.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4BF73C4628C2479B003D2FA0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4BF73C4728C247E4003D2FA0 /* OtherUser.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,9 +250,11 @@
 				4BC9C6632846B0EE0097D119 /* TimerView.swift in Sources */,
 				4B68709828BE1828008D0355 /* PhotoPicker.swift in Sources */,
 				4B68709C28BE8CA8008D0355 /* TopButtons.swift in Sources */,
+				4BF73C4C28C258A1003D2FA0 /* AsyncImageView.swift in Sources */,
 				4B68709A28BE4FD8008D0355 /* TopMenuButton.swift in Sources */,
 				4B68709128BCB2ED008D0355 /* MainView.swift in Sources */,
 				4B61F57328108A84005F1C5D /* ContentView.swift in Sources */,
+				4BF73C4E28C376F8003D2FA0 /* YourTop.swift in Sources */,
 				4B6870AD28BFC752008D0355 /* DatabaseService.swift in Sources */,
 				4BC9C6612846AEEA0097D119 /* StartView.swift in Sources */,
 				4B61F57128108A84005F1C5D /* Math_GameApp.swift in Sources */,
@@ -237,9 +262,12 @@
 				4B68709628BE1481008D0355 /* SettingsView.swift in Sources */,
 				4B68708F28BA9574008D0355 /* TextButton.swift in Sources */,
 				4B68708B28BA1C79008D0355 /* GameView.swift in Sources */,
+				4BF73C4828C247E4003D2FA0 /* OtherUser.swift in Sources */,
 				4B6870AB28BFC589008D0355 /* TopResultsView.swift in Sources */,
+				4BF73C4528C242BF003D2FA0 /* DifficultyButtonTopScore.swift in Sources */,
 				4B61F57F28108B60005F1C5D /* AnswerButton.swift in Sources */,
 				4B68708D28BA36F0008D0355 /* ViewModel.swift in Sources */,
+				4BF73C4A28C25736003D2FA0 /* UserRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

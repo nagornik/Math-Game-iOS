@@ -39,13 +39,14 @@ class ViewModel: ObservableObject {
     @Published var secondNumber = 0
     @Published var difficulty: Difficulties = .medium {
         didSet {
-            allTopScores[oldValue.rawValue] = score
             score = 0
             isAnswered = false
             generateQuestion()
             generateAnswers()
+            difficultyForTopScore = difficulty
         }
     }
+    @Published var difficultyForTopScore: Difficulties = .medium
     
     var difficultyNumber: Int {
         switch difficulty {
@@ -83,6 +84,7 @@ class ViewModel: ObservableObject {
     
     @Published var isAnswered = false
     @Published var isSelected = Int()
+    @Published var isLoading = false
     
     
     var everySecTimer = Timer.publish(every: 1, tolerance: 1, on: .main, in: .common).autoconnect()
