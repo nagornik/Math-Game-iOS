@@ -14,6 +14,43 @@ import UIKit
 
 class DatabaseService: ObservableObject {
     
+    // MARK: - Dummy data uploading
+    
+//    var men = ["James","John","Robert","Michael","William","David","Richard","Charles","Joseph"]
+//    var women = ["Mary","Patricia","Linda","Barbara","Elizabeth","Jennifer","Maria","Susan"]
+//
+//    func uploadDummyData() {
+//
+//        var num = 10
+//
+//        for name in men {
+//            let userId = UUID().uuidString
+//            let ref = db.collection("users").document(userId)
+//            ref.setData(["name" : name], merge: true)
+//            let url = "https://randomuser.me/api/portraits/med/men/\(num).jpg"
+//            num += 1
+//            ref.setData(["photo" : url], merge: true)
+//            for diff in Difficulties.allCases {
+//                ref.setData([diff.rawValue : Int.random(in: 0...99)], merge: true)
+//            }
+//        }
+//
+//        num = 10
+//
+//        for name in women {
+//            let userId = UUID().uuidString
+//            let ref = db.collection("users").document(userId)
+//            ref.setData(["name" : name], merge: true)
+//            let url = "https://randomuser.me/api/portraits/med/women/\(num).jpg"
+//            num += 1
+//            ref.setData(["photo" : url], merge: true)
+//            for diff in Difficulties.allCases {
+//                ref.setData([diff.rawValue : Int.random(in: 0...99)], merge: true)
+//            }
+//        }
+//
+//    }
+    
     var imageCache = [String : Image]()
     
     func getImage(forKey: String) -> Image? {

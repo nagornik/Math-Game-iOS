@@ -12,6 +12,8 @@ struct MainView: View {
     @EnvironmentObject var logic: ViewModel
     @EnvironmentObject var database: DatabaseService
     
+    @State var drag = CGFloat.zero
+    
     var body: some View {
         
         ZStack {
@@ -37,7 +39,7 @@ struct MainView: View {
                         SettingsView()
                             .transition(.move(edge: .bottom).combined(with: .opacity))
                     case .topResults:
-                        TopResultsView()
+                        TopResultsView(drag: $drag)
                             .transition(.move(edge: .bottom).combined(with: .opacity))
                     case .login:
                         LoginView()
@@ -60,6 +62,7 @@ struct MainView: View {
         .animation(.spring().speed(0.5), value: logic.selectedScreen)
         .animation(.spring().speed(0.5), value: logic.isAnswered)
         .animation(.spring().speed(0.5), value: logic.isLoading)
+        .animation(.spring().speed(0.5), value: logic.choiceArray)
         .onAppear {
             database.downloadAndUpdateScore(allTopScores: logic.allTopScores) { data in
                 if data != nil {
@@ -69,8 +72,75 @@ struct MainView: View {
                 }
             }
         }
+        .gesture(
+            DragGesture(minimumDistance: logic.selectedScreen == .topResults ? 10 : 10000)
+                .onChanged({ value in
+                    drag = value.translation.width
+                })
+                .onEnded({ value in
+                    
+                    guard value.translation.width > 100 || value.translation.width < -100 else {
+                        withAnimation(.spring()) {
+                            drag = .zero
+                        }
+                        return
+                    }
+                    
+                    if value.translation.width > 100 {
+                        withAnimation(.spring()) {
+                            drag = screen.width * 1
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            drag = -screen.width * 1
+                            withAnimation(nil) {
+                                previousTopDifficulty()
+                            }
+                        }
+                    } else if value.translation.width < -100 {
+                        withAnimation(.spring()) {
+                            drag = -screen.width * 1
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            drag = screen.width * 1
+                            withAnimation(nil) {
+                                nextTopDifficulty()
+                            }
+                        }
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        withAnimation(.spring()) {
+                            drag = .zero
+                        }
+                    }
+                })
+        )
         
     }
+    
+    func nextTopDifficulty() {
+        if logic.difficultyForTopScore == .veryEasy {
+            logic.difficultyForTopScore = .easy
+        } else if logic.difficultyForTopScore == .easy {
+            logic.difficultyForTopScore = .medium
+        } else if logic.difficultyForTopScore == .medium {
+            logic.difficultyForTopScore = .hard
+        } else if logic.difficultyForTopScore == .hard {
+            logic.difficultyForTopScore = .ultraHard
+        }
+    }
+    
+    func previousTopDifficulty() {
+        if logic.difficultyForTopScore == .ultraHard {
+            logic.difficultyForTopScore = .hard
+        } else if logic.difficultyForTopScore == .hard {
+            logic.difficultyForTopScore = .medium
+        } else if logic.difficultyForTopScore == .medium {
+            logic.difficultyForTopScore = .easy
+        } else if logic.difficultyForTopScore == .easy {
+            logic.difficultyForTopScore = .veryEasy
+        }
+    }
+    
 }
 
 struct MainView_Previews: PreviewProvider {

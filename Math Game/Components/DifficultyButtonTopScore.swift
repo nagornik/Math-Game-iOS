@@ -16,21 +16,20 @@ struct DifficultyButtonTopScore: View {
     var action: () -> Void
     
     var body: some View {
-        
-        Button {
-            action()
-        } label: {
-            Text(text)
-                .bold()
-                .font(.caption)
-                .padding()
-                .background(Color(logic.difficultyForTopScore.rawValue == text ? "selectedButton" : "buttonBack"))
-                .foregroundColor(Color("buttonForeground"))
-                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 3)
-        }
+       
+        Text(text)
+            .bold()
+            .font(.caption)
+            .padding()
+            .background(Color(logic.difficultyForTopScore.rawValue == text ? "selectedButton" : "buttonBack"))
+            .foregroundColor(Color("buttonForeground"))
+            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+            .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 3)
+            .animation(.easeInOut, value: logic.difficultyForTopScore.rawValue)
+            .onTapGesture {
+                action()
+            }
 
-        
     }
 }
 

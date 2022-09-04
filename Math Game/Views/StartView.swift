@@ -11,11 +11,6 @@ struct StartView: View {
     
     @EnvironmentObject var logic: ViewModel
     
-    @State var progressValue: Float = 0.0
-    
-    @State private var timeRemaining = 5
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
     var body: some View {
         
         ZStack {

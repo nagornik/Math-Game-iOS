@@ -75,7 +75,7 @@ struct GameView: View {
             .frame(width: screen.width / 2, height: screen.width / 2)
             .onReceive(logic.everySecTimer) { _ in
                 
-                if !logic.isAnswered {
+                if !logic.isAnswered && logic.selectedScreen == .game {
                     logic.timeRemaning -= 1
                     logic.progress = Float(1 - (logic.timeRemaning / 5.0))
                     
@@ -121,11 +121,12 @@ struct GameView: View {
                     } label: {
                         AnswerButton(number: num)
                     }
-                    .transition(.scale.combined(with: .opacity))
-                    
+//                    .transition(.scale.combined(with: .opacity))
+                    .transition(.move(edge: .trailing).combined(with: .opacity))
                 }
             }
             .frame(width: screen.width/1.5)
+//            .transition(.move(edge: .leading))
         }
         .onChange(of: logic.allTopScores) { newValue in
             database.uploadUserData(allTopScores: newValue)

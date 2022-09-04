@@ -27,9 +27,9 @@ struct SettingsView: View {
                 
                 difficulty
                 
-                signInOutButton
-                
                 Spacer()
+                
+                signInOutButton
                 
             }
             

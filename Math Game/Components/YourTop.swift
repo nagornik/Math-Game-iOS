@@ -15,6 +15,7 @@ struct YourTop: View {
     var profilePic: UIImage?
     var username: String
     var topScore: Int
+    var number: Int
     
     var body: some View {
         
@@ -40,9 +41,14 @@ struct YourTop: View {
             .clipShape(Circle())
             
             
-            Text(username)
-                .bold()
-                .font(.system(.title2, design: .rounded))
+            HStack {
+                Text("# \(number)")
+                    .fontWeight(.bold)
+                    .font(.system(.body, design: .rounded))
+                Text(username)
+                    .bold()
+                    .font(.system(.title2, design: .rounded))
+            }
             
             HStack {
                 Text("Top score: ")
@@ -60,7 +66,7 @@ struct YourTop: View {
 
 struct YourTop_Previews: PreviewProvider {
     static var previews: some View {
-        YourTop(profilePic: DatabaseService().profilePic, username: DatabaseService().name, topScore: ViewModel().allTopScores[ViewModel().difficultyForTopScore.rawValue] ?? 0)
+        YourTop(profilePic: DatabaseService().profilePic, username: DatabaseService().name, topScore: ViewModel().allTopScores[ViewModel().difficultyForTopScore.rawValue] ?? 0, number: 12)
             .environmentObject(ViewModel())
             .environmentObject(DatabaseService())
     }
