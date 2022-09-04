@@ -121,12 +121,11 @@ struct GameView: View {
                     } label: {
                         AnswerButton(number: num)
                     }
-//                    .transition(.scale.combined(with: .opacity))
                     .transition(.move(edge: .trailing).combined(with: .opacity))
                 }
             }
             .frame(width: screen.width/1.5)
-//            .transition(.move(edge: .leading))
+
         }
         .onChange(of: logic.allTopScores) { newValue in
             database.uploadUserData(allTopScores: newValue)
@@ -150,7 +149,6 @@ struct GameView: View {
             }
         }
         .padding(.top)
-        
     }
     
     

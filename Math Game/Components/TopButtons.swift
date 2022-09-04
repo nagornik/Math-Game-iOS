@@ -15,7 +15,7 @@ struct TopButtons: View {
     var body: some View {
         
         HStack(spacing: 16) {
-        
+            
             if logic.selectedScreen == .settings {
                 
                 Text("Settings")
@@ -32,7 +32,7 @@ struct TopButtons: View {
                 .transition(.move(edge: .leading).combined(with: .opacity))
                 
             }
-                
+            
             Spacer()
             
             if logic.selectedScreen != .game || logic.isAnswered {
@@ -55,7 +55,7 @@ struct TopButtons: View {
                 }
                 
             }
-                
+            
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .topTrailing)

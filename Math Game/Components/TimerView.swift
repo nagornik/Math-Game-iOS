@@ -16,36 +16,31 @@ struct TimerView: View {
         
         ZStack {
             
-                    Circle()
-                        .stroke(lineWidth: 20.0)
-                        .opacity(0.3)
-                        .foregroundColor(Color("buttonBack"))
+            Circle()
+                .stroke(lineWidth: 20.0)
+                .opacity(0.3)
+                .foregroundColor(Color("buttonBack"))
             
-                    
-                    Circle()
-                        .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
-                        .stroke(style: StrokeStyle(lineWidth: 20.0 ))
-                        .overlay(content: {
-                            AngularGradient(gradient: Gradient(colors: [Color("buttonBack"), .red, Color("buttonBack")]), center: .center)
-                                .mask {
-                                    Circle()
-                                        .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
-                                        .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
-                                }
-                        })
-                        .rotationEffect(Angle(degrees: 270.0))
-                        .animation(.spring(), value: progress)
-                        
+            
+            Circle()
+                .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
+                .stroke(style: StrokeStyle(lineWidth: 20.0 ))
+                .overlay(content: {
+                    AngularGradient(gradient: Gradient(colors: [Color("buttonBack"), .red, Color("buttonBack")]), center: .center)
+                        .mask {
+                            Circle()
+                                .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
+                                .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
+                        }
+                })
+                .rotationEffect(Angle(degrees: 270.0))
+                .animation(.spring(), value: progress)
+            
             Text("\(max("0", timeRemaning.formatted())) sec")
-                        .font(.system(size: 35, weight: .semibold))
-                        .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: 2)
-                        .foregroundColor(Color("text"))
-//                        .animation(.linear(duration: 5), value: progress)
-//                        .onTapGesture {
-//                                progress += 0.1
-//                        }
-                        
-        
+                .font(.system(size: 35, weight: .semibold))
+                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: 2)
+                .foregroundColor(Color("text"))
+            
         }
         
         

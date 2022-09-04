@@ -14,7 +14,6 @@ struct TopMenuButton: View {
     
     var body: some View {
         
-        
         Button {
             action()
         } label: {
@@ -23,13 +22,13 @@ struct TopMenuButton: View {
                 .foregroundColor(Color("text"))
         }
         
-        
     }
 }
 
-//struct TopMenuButton_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TopMenuButton()
-//            .environmentObject(ViewModel())
-//    }
-//}
+struct TopMenuButton_Previews: PreviewProvider {
+    static var previews: some View {
+        TopMenuButton(systemName: "house", action: {})
+            .environmentObject(ViewModel())
+            .environmentObject(DatabaseService())
+    }
+}

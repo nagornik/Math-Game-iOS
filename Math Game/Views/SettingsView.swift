@@ -168,7 +168,6 @@ struct SettingsView: View {
                     .font(.system(size: 25, weight: .bold))
                     .foregroundColor(Color("text"))
                     .transition(.move(edge: .leading).combined(with: .opacity))
-//                    .padding()
                 
                 TextButton(text: logic.difficulty.rawValue, size: 14)
                     .padding(.horizontal)
