@@ -13,8 +13,8 @@ Game generates a question - two numbers you must add and generates four answers 
 - Upload your profile picture to Firebase Storage
 - TopResultsView shows all users who have any high score of this difficulty
 - All users' list is sorted and shows position of each user and your own position
-– Animations, Gestures, Haptic feedback
-– Dark mode support
+- Animations, Gestures, Haptic feedback
+- Dark mode support
 
 ## iPhone 13
 ### Start screen, Game view, Settings view
