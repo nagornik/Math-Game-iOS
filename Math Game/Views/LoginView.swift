@@ -168,6 +168,7 @@ struct LoginView: View {
                 loginSuccess()
             } else {
                 loginError(error: error!)
+                haptic(type: .error)
             }
         }
         
@@ -195,6 +196,9 @@ struct LoginView: View {
     }
     
     func nextField() {
+        
+        impact(type: .soft)
+        
         if mode == .register && name == "" {
             focus = .name
             return

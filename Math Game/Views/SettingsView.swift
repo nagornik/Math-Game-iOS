@@ -86,6 +86,7 @@ struct SettingsView: View {
         .frame(maxWidth: .infinity)
         .onTapGesture {
             showPhotoSheet = true
+            impact(type: .soft)
         }
         .fullScreenCover(isPresented: $showPhotoSheet) {
             PhotoPicker(filter: .images, limit: 1) { results in
@@ -126,6 +127,7 @@ struct SettingsView: View {
                 Image(systemName: "xmark.circle.fill")
                     .onTapGesture {
                         database.name = ""
+                        impact(type: .soft)
                     }
             }
             .foregroundColor(Color("text"))
@@ -151,6 +153,7 @@ struct SettingsView: View {
                         TextButton(text: diff.rawValue, size: 14)
                             .onTapGesture {
                                 logic.difficulty = diff
+                                impact(type: .soft)
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                                     selectDifficulty = false
                                 }
@@ -173,6 +176,7 @@ struct SettingsView: View {
                     .padding(.horizontal)
                     .onTapGesture {
                         selectDifficulty = true
+                        impact(type: .soft)
                     }
                     .transition(.move(edge: .trailing).combined(with: .opacity))
                     .frame(maxWidth: .infinity)

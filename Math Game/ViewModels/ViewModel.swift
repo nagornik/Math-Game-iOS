@@ -10,6 +10,16 @@ import SwiftUI
 
 let screen = UIScreen.main.bounds
 
+func haptic(type: UINotificationFeedbackGenerator.FeedbackType) {
+    UINotificationFeedbackGenerator()
+        .notificationOccurred(type)
+}
+
+func impact(type: UIImpactFeedbackGenerator.FeedbackStyle) {
+    UIImpactFeedbackGenerator(style: type)
+        .impactOccurred()
+}
+
 enum ShowedScreen {
     case start
     case game
@@ -28,7 +38,11 @@ enum Difficulties: String, CaseIterable {
 
 class ViewModel: ObservableObject {
     
-    @Published var selectedScreen: ShowedScreen = .start
+    @Published var selectedScreen: ShowedScreen = .start {
+        willSet {
+            impact(type: .medium)
+        }
+    }
     
     @Published var timeRemaning: Float = 5.0
     @Published var progress: Float = 0
@@ -45,8 +59,15 @@ class ViewModel: ObservableObject {
             generateAnswers()
             difficultyForTopScore = difficulty
         }
+        willSet {
+            impact(type: .medium)
+        }
     }
-    @Published var difficultyForTopScore: Difficulties = .medium
+    @Published var difficultyForTopScore: Difficulties = .medium {
+        willSet {
+            impact(type: .soft)
+        }
+    }
     
     var difficultyNumber: Int {
         switch difficulty {
@@ -131,8 +152,10 @@ class ViewModel: ObservableObject {
     
         if answer == correctAnswer {
             score += 1
+            haptic(type: .success)
         } else if score > 0 {
             score -= 1
+            haptic(type: .error)
         }
         
         if score > allTopScores[difficulty.rawValue] ?? 0 {
@@ -150,6 +173,7 @@ class ViewModel: ObservableObject {
     }
     
     func nextQuestion() {
+        impact(type: .medium)
         generateQuestion()
         generateAnswers()
         timeRemaning = 5
