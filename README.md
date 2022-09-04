@@ -10,7 +10,8 @@ Game generates a question - two numbers you must add and generates four answers 
 - Five difficulties
 - All highscore (for each difficulty) is stored localy using @AppStorage and is always syncronized with Firebase
 - Login / register with email and password
-- Upload your profile picture to Firebase Storage
+- Upload your profile picture to Firebase Storage (resize and optimize image before uploading)
+- Images are shown with AsyncImage and are cached on the device
 - TopResultsView shows all users who have any high score of this difficulty
 - All users' list is sorted and shows position of each user and your own position
 - Animations, Gestures, Haptic feedback
