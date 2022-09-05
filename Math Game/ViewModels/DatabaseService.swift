@@ -156,6 +156,10 @@ class DatabaseService: ObservableObject {
     
     func uploadImage(image: UIImage) {
         
+        defer {
+            self.isUploadingPic = false
+        }
+        
         guard isLoggedIn() else { return }
         isUploadingPic = true
         
@@ -174,27 +178,15 @@ class DatabaseService: ObservableObject {
         
         fileRef.putData(imageData!, metadata: nil) { meta, error in
             
-            if error != nil {
-                self.isUploadingPic = false
-                return
-            }
+            if error != nil { return }
             
             fileRef.downloadURL { url, error in
-                if error != nil {
-                    self.isUploadingPic = false
-                    return
-                }
+                if error != nil { return }
                 
-                guard url != nil else {
-                    self.isUploadingPic = false
-                    return
-                }
+                guard url != nil else { return }
                 
                 doc.setData(["photo" : url!.absoluteString], merge: true) { error in
-                    self.isUploadingPic = false
-                    if error != nil {
-                        return
-                    }
+                    if error != nil { return }
                 }
                 
             }
