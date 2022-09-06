@@ -8,7 +8,7 @@ The game generates a question - two numbers you must add and generates four answ
 ## Features:
 - Full Firebase integration
 - Five difficulties
-- All highscore (for each difficulty) is stored localy using @AppStorage and is always syncronized with Firebase
+- All highscore (for each difficulty) is stored locally using @AppStorage and is always synchronized with Firebase
 - Login / register with email and password
 - Upload your profile picture to Firebase Storage (resize and optimize image before uploading)
 - Images are shown with AsyncImage and are cached on the device
