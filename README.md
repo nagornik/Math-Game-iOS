@@ -3,7 +3,7 @@
 An iOS game written in SwiftUI, using MVVM.
 
 ## Gameplay
-Game generates a question - two numbers you must add and generates four answers only one of which is correct. You must tap a button with the correct answer in 5 seconds while the timer goes down showing animated color ring.
+The game generates a question - two numbers you must add and generates four answers, only one of which is correct. You must tap a button with the correct answer in 5 seconds while the timer goes down, showing an animated color ring.
 
 ## Features:
 - Full Firebase integration
